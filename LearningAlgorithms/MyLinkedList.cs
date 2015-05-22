@@ -14,7 +14,7 @@ namespace LearningAlgorithms
             return newElement;
         }
 
-        public void Add(T value)
+        public MyLinkedListElement<T> Add(T value)
         {
             var element = new MyLinkedListElement<T>(value);
 
@@ -27,6 +27,8 @@ namespace LearningAlgorithms
                 var lastElement = GetLastElement(Head);
                 lastElement.SetNext(element);
             }
+
+            return element;
         }
 
         private MyLinkedListElement<T> GetLastElement(MyLinkedListElement<T> head)
@@ -53,6 +55,18 @@ namespace LearningAlgorithms
                 return null;
 
             return element;
+        }
+
+        public void Delete(MyLinkedListElement<T> element)
+        {
+            var nextElement = element.Next;
+            var prevElement = Head;
+            while (!prevElement.Next.Value.Equals(element.Value))
+            {
+                prevElement = Head.Next;
+            }
+
+            prevElement.SetNext(nextElement);
         }
     }
 }

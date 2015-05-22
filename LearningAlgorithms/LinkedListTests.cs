@@ -91,5 +91,21 @@ namespace LearningAlgorithms
             // assert 
             Assert.That(element.Value, Is.EqualTo(3));
         }
+
+        [Test]
+        public void It_should_delete_an_element()
+        {
+            // arrange
+            var element1 = _linkedList.Add(1);
+            var element2 = _linkedList.Add(2);
+            var element3 = _linkedList.Add(3);
+            var element4 = _linkedList.Add(4);
+
+            //act
+            _linkedList.Delete(element3);
+
+            //assert
+            Assert.That(element2.Next, Is.EqualTo(element4));
+        }
     }
 }
