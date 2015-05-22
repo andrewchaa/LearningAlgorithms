@@ -75,5 +75,21 @@ namespace LearningAlgorithms
 
             Assert.That(_linkedList.Head.Next.Next.Value, Is.EqualTo(3));
         }
+
+        [Test]
+        public void It_should_traverse_the_list_and_find_an_element_by_value()
+        {
+            // arrange
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            _linkedList.Add(3);
+            _linkedList.Add(4);
+            
+            // act
+            var element = _linkedList.Find(3);
+
+            // assert 
+            Assert.That(element.Value, Is.EqualTo(3));
+        }
     }
 }

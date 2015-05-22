@@ -1,4 +1,6 @@
-﻿namespace LearningAlgorithms
+﻿using System;
+
+namespace LearningAlgorithms
 {
     public class MyLinkedList<T>
     {
@@ -34,6 +36,21 @@
             {
                 element = element.Next;
             }
+
+            return element;
+        }
+
+        public MyLinkedListElement<T> Find(T value)
+        {
+
+            var element = Head;
+            while (!element.Value.Equals(value))
+            {
+                element = element.Next;
+            }
+
+            if (!element.Value.Equals(value))
+                return null;
 
             return element;
         }
