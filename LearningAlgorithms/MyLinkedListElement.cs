@@ -2,17 +2,17 @@ using System.Runtime.Remoting.Messaging;
 
 namespace LearningAlgorithms
 {
-    public class ListElement<T>
+    public class MyLinkedListElement<T>
     {
-        public ListElement<T> Next { get; private set; }
+        public MyLinkedListElement<T> Next { get; private set; }
         public T Value { get; private set; }
 
-        public ListElement(T value)
+        public MyLinkedListElement(T value)
         {
             Value = value;
         }
 
-        public void SetNext(ListElement<T> element)
+        public void SetNext(MyLinkedListElement<T> element)
         {
             Next = element;
         }

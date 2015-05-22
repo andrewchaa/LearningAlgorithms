@@ -10,15 +10,17 @@ namespace LearningAlgorithms
     [TestFixture]
     public class LinkedListTests
     {
-        private ListElement<int> _element1;
-        private ListElement<int> _element2;
+        private MyLinkedListElement<int> _element1;
+        private MyLinkedListElement<int> _element2;
+        private MyLinkedList<int> _linkedList;
 
         [SetUp]
         public void SetUp()
         {
             //arrange
-            _element1 = new ListElement<int>(1);
-            _element2 = new ListElement<int>(2);
+            _element1 = new MyLinkedListElement<int>(1);
+            _element2 = new MyLinkedListElement<int>(2);
+            _linkedList = new MyLinkedList<int>();
         }
 
         [Test]
@@ -50,16 +52,28 @@ namespace LearningAlgorithms
 
             Assert.That(newElement.Next, Is.EqualTo(_element1));
         }
-    }
 
-    public class MyLinkedList<T>
-    {
-        public ListElement<T> InsertInFront(ListElement<T> element, T value)
+        [Test]
+        public void It_should_add_the_first_element_to_the_head()
         {
-            var newElement = new ListElement<T>(value);
-            newElement.SetNext(element);
+            //act
+            _linkedList.Add(1);
 
-            return newElement;
+            //assert
+            Assert.That(_linkedList.Head.Value, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void It_should_add_the_element_as_the_last_one()
+        {
+            //arrange
+            _linkedList.Add(1);
+            _linkedList.Add(2);
+            
+            //act
+            _linkedList.Add(3);
+
+            Assert.That(_linkedList.Head.Next.Next.Value, Is.EqualTo(3));
         }
     }
 }
