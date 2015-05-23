@@ -46,8 +46,10 @@
     <Compile Include="MyLinkedListElement.cs" />
     <Compile Include="MyLinkedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\MyNode.cs" />
     <Compile Include="Tests\MyStack.cs" />
     <Compile Include="Tests\StackTests.cs" />
+    <Compile Include="Tests\TreeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
