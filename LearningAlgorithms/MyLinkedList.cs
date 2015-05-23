@@ -6,6 +6,20 @@ namespace LearningAlgorithms
     {
         public MyLinkedListElement<T> Head { private set; get; }
 
+        public MyLinkedListElement<T> Tail
+        {
+            get
+            {
+                var tail = Head;
+                while (tail != null && tail.Next == null)
+                {
+                    tail = tail.Next;
+                }
+
+                return tail;
+            }
+        }
+
         public MyLinkedListElement<T> InsertInFront(MyLinkedListElement<T> element, T value)
         {
             var newElement = new MyLinkedListElement<T>(value);

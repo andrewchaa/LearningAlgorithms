@@ -102,5 +102,22 @@ namespace LearningAlgorithms.Tests
             //assert
             Assert.That(element2.Next, Is.EqualTo(element4));
         }
+
+        [Test]
+        public void Tail_should_point_to_the_last_one()
+        {
+            // arrange
+            var element1 = _linkedList.Add(1);
+            var element2 = _linkedList.Add(2);
+            var element3 = _linkedList.Add(3);
+            var element4 = _linkedList.Add(4);
+
+            // act
+            var tail = _linkedList.Tail;
+
+            // assert
+            Assert.That(tail, Is.EqualTo(tail));
+
+        }
     }
 }
