@@ -42,10 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LinkedListTests.cs" />
+    <Compile Include="Tests\LinkedListTests.cs" />
     <Compile Include="MyLinkedListElement.cs" />
     <Compile Include="MyLinkedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\MyStack.cs" />
+    <Compile Include="Tests\StackTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

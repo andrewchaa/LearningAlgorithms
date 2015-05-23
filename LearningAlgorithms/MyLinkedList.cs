@@ -9,7 +9,11 @@ namespace LearningAlgorithms
         public MyLinkedListElement<T> InsertInFront(MyLinkedListElement<T> element, T value)
         {
             var newElement = new MyLinkedListElement<T>(value);
+            if (Head == element)
+                Head = newElement;
+
             newElement.SetNext(element);
+
 
             return newElement;
         }
@@ -61,12 +65,20 @@ namespace LearningAlgorithms
         {
             var nextElement = element.Next;
             var prevElement = Head;
-            while (!prevElement.Next.Value.Equals(element.Value))
+            while (prevElement != null && prevElement.Next != null && !prevElement.Next.Value.Equals(element.Value))
             {
-                prevElement = Head.Next;
+                prevElement = prevElement.Next;
             }
 
-            prevElement.SetNext(nextElement);
+            if (prevElement == null)
+            {
+                Head = nextElement;
+            }
+            else
+            {
+                prevElement.SetNext(nextElement);
+            }
+            
         }
     }
 }
