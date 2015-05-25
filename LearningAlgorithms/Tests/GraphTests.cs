@@ -41,7 +41,7 @@ namespace LearningAlgorithms.Tests
         [Test]
         public void It_should_calculate_the_weight_among_nodes()
         {
-            // arragen
+            // arrange
             var graph = BuildGraph();
 
             var nodeA = graph.Nodes.First(n => n.Name == "A");
@@ -58,6 +58,20 @@ namespace LearningAlgorithms.Tests
             Assert.That(graph.FindWeight(new List<MyNode> {nodeA, nodeD }), Is.EqualTo(5));
             Assert.That(graph.FindWeight(new List<MyNode> {nodeA, nodeD, nodeC }), Is.EqualTo(13));
             Assert.That(graph.FindWeight(new List<MyNode> {nodeA, nodeE, nodeB, nodeC, nodeD }), Is.EqualTo(22));
+        }
+
+        [Test]
+        public void It_should_find_routes_through_nodes()
+        {
+            // arrange
+            var graph = BuildGraph();
+            var nodeC = graph.Nodes.First(n => n.Name == "C");
+
+            // act
+            var list = graph.FindRoutes(nodeC, nodeC, 3);
+
+            // assert
+            Assert.That(list.Count, Is.EqualTo(2));
         }
 
         private MyGraph BuildGraph()

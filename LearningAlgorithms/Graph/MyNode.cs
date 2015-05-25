@@ -21,5 +21,9 @@ namespace LearningAlgorithms.Graph
             Weights.Add(weight);
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
