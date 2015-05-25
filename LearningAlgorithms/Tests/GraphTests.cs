@@ -44,15 +44,20 @@ namespace LearningAlgorithms.Tests
             // arragen
             var graph = BuildGraph();
 
-            MyNode nodeA = graph.Nodes.First(n => n.Name == "A");
-            MyNode nodeB = graph.Nodes.First(n => n.Name == "B");
-            MyNode nodeC = graph.Nodes.First(n => n.Name == "C");
+            var nodeA = graph.Nodes.First(n => n.Name == "A");
+            var nodeB = graph.Nodes.First(n => n.Name == "B");
+            var nodeC = graph.Nodes.First(n => n.Name == "C");
+            var nodeD = graph.Nodes.First(n => n.Name == "D");
+            var nodeE = graph.Nodes.First(n => n.Name == "E");
 
             // act
-            var weight = graph.FindWeight(new List<MyNode> {nodeA, nodeB, nodeC});
+            var weightAd = graph.FindWeight(new List<MyNode> {nodeA, nodeD});
 
             // assert
-            Assert.That(weight, Is.EqualTo(9));
+            Assert.That(graph.FindWeight(new List<MyNode> {nodeA, nodeB, nodeC}), Is.EqualTo(9));
+            Assert.That(graph.FindWeight(new List<MyNode> {nodeA, nodeD }), Is.EqualTo(5));
+            Assert.That(graph.FindWeight(new List<MyNode> {nodeA, nodeD, nodeC }), Is.EqualTo(13));
+            Assert.That(graph.FindWeight(new List<MyNode> {nodeA, nodeE, nodeB, nodeC, nodeD }), Is.EqualTo(22));
         }
 
         private MyGraph BuildGraph()
