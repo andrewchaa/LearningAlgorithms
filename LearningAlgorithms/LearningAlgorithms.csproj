@@ -42,12 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tests\GraphTests.cs" />
     <Compile Include="Tests\LinkedListTests.cs" />
-    <Compile Include="MyLinkedListElement.cs" />
-    <Compile Include="MyLinkedList.cs" />
+    <Compile Include="LinkedList\MyLinkedListElement.cs" />
+    <Compile Include="LinkedList\MyLinkedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\MyNode.cs" />
-    <Compile Include="Tests\MyStack.cs" />
+    <Compile Include="Graph\MyNode.cs" />
+    <Compile Include="LinkedList\MyStack.cs" />
     <Compile Include="Tests\StackTests.cs" />
     <Compile Include="Tests\TreeTests.cs" />
   </ItemGroup>

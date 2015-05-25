@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LearningAlgorithms.Graph;
 using NUnit.Framework;
 
 namespace LearningAlgorithms.Tests
@@ -14,18 +15,18 @@ namespace LearningAlgorithms.Tests
         {
             // arrange
             // act
-            var node = new MyNode(1);
+            var node = new MyNode("A");
 
             // assert
-            Assert.That(node.Value, Is.EqualTo(1));
+            Assert.That(node.Name, Is.EqualTo("A"));
         }
 
         [Test]
         public void Node_has_children()
         {
             // arrange
-            var node = new MyNode(1);
-            var childNode = new MyNode(2);
+            var node = new MyNode("A");
+            var childNode = new MyNode("B");
 
             // act
             node.Add(childNode);

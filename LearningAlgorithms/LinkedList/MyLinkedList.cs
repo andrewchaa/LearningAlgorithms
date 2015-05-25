@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LearningAlgorithms
+﻿namespace LearningAlgorithms.LinkedList
 {
     public class MyLinkedList<T>
     {

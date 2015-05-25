@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 
-namespace LearningAlgorithms.Tests
+namespace LearningAlgorithms.Graph
 {
     public class MyNode
     {
-        public int Value { get; private set; }
+        public string Name { get; private set; }
         public IList<MyNode> Nodes { get; private set; }
 
-        public MyNode(int value)
+        public MyNode(string name)
         {
-            Value = value;
+            Name = name;
             Nodes = new List<MyNode>();
         }
 

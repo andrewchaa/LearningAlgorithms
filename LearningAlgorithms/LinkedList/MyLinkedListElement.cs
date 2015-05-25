@@ -1,6 +1,4 @@
-using System.Runtime.Remoting.Messaging;
-
-namespace LearningAlgorithms
+namespace LearningAlgorithms.LinkedList
 {
     public class MyLinkedListElement<T>
     {

@@ -1,4 +1,4 @@
-namespace LearningAlgorithms.Tests
+namespace LearningAlgorithms.LinkedList
 {
     public class MyStack<T>
     {
