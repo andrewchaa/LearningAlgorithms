@@ -1,16 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 
 namespace LearningAlgorithms.Graph
 {
     public class MyGraph
     {
         public IList<MyNode> Nodes { get; private set; }
-        private int _stops = 0;
-        private List<List<MyNode>> _routesList;
         private MyNode _endNode;
+        private int _maxStops;
 
         public MyGraph()
         {
@@ -42,21 +39,18 @@ namespace LearningAlgorithms.Graph
 
         public List<List<MyNode>> FindRoutes(MyNode start, MyNode end, int maxStops)
         {
-            _routesList = new List<List<MyNode>>();
+            var matchingNodes = new List<List<MyNode>>();
             _endNode = end;
+            _maxStops = maxStops;
 
-            var routes = new List<MyNode>();
-            routes.Add(start);
-            var stops = 0;
+            var routes = new List<MyNode> {start};
+            FindNodes(matchingNodes, routes, start, 0);
+            PrintNodes(matchingNodes);
 
-            FindNodes(routes, start, stops, maxStops);
-
-            PrintNodes(_routesList);
-
-            return _routesList;
+            return matchingNodes;
         }
 
-        private void FindNodes(List<MyNode> existingRoutes, MyNode node, int stops, int maxStops)
+        private void FindNodes(List<List<MyNode>> matchingNodes, List<MyNode> existingRoutes, MyNode node, int stops)
         {
             stops++;
 
@@ -68,18 +62,18 @@ namespace LearningAlgorithms.Graph
 
                 if (nd == _endNode)
                 {
-                    _routesList.Add(routes);
+                    matchingNodes.Add(routes);
                     continue;
                 }
 
-                if (nd.Nodes.Count == 0 || stops >= maxStops)
+                if (nd.Nodes.Count == 0 || stops >= _maxStops)
                     continue;
 
-                FindNodes(routes, nd, stops, maxStops);
+                FindNodes(matchingNodes, routes, nd, stops);
             }
         }
 
-        private void PrintNodes(List<List<MyNode>> list)
+        private void PrintNodes(IEnumerable<List<MyNode>> list)
         {
             foreach (var lst in list)
             {
