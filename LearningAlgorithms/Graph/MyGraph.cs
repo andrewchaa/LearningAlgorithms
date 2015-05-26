@@ -10,6 +10,7 @@ namespace LearningAlgorithms.Graph
         public IList<MyNode> Nodes { get; private set; }
         private int _stops = 0;
         private List<List<MyNode>> _routesList;
+        private MyNode _endNode;
 
         public MyGraph()
         {
@@ -42,46 +43,52 @@ namespace LearningAlgorithms.Graph
         public List<List<MyNode>> FindRoutes(MyNode start, MyNode end, int maxStops)
         {
             _routesList = new List<List<MyNode>>();
+            _endNode = end;
 
-            AddRouteList(start, maxStops);
+            var routes = new List<MyNode>();
+            routes.Add(start);
+            var stops = 0;
 
+            FindNodes(routes, start, stops, maxStops);
 
-            foreach (var list in _routesList)
+            PrintNodes(_routesList);
+
+            return _routesList;
+        }
+
+        private void FindNodes(List<MyNode> existingRoutes, MyNode node, int stops, int maxStops)
+        {
+            stops++;
+
+            foreach (var nd in node.Nodes)
             {
-                foreach (var node in list)
+                var routes = new List<MyNode>();
+                routes.AddRange(existingRoutes);
+                routes.Add(nd);
+
+                if (nd == _endNode)
+                {
+                    _routesList.Add(routes);
+                    continue;
+                }
+
+                if (nd.Nodes.Count == 0 || stops >= maxStops)
+                    continue;
+
+                FindNodes(routes, nd, stops, maxStops);
+            }
+        }
+
+        private void PrintNodes(List<List<MyNode>> list)
+        {
+            foreach (var lst in list)
+            {
+                foreach (var node in lst)
                 {
                     Console.Write(node);
                 }
                 Console.Write("\n");
             }
-
-            return _routesList;
-        }
-
-        private List<List<MyNode>> AddRouteList(MyNode start, int maxStops)
-        {
-            _stops++;
-
-            foreach (var node in start.Nodes)
-            {
-                var routes = new List<MyNode>();
-                routes.Add(start);
-                routes.Add(node);
-
-                foreach (var myNode in node.Nodes)
-                {
-                    routes.Add(myNode);
-
-                    foreach (var myNode1 in myNode.Nodes)
-                    {
-                        routes.Add(myNode1);
-                    }
-                }
-
-                _routesList.Add(routes);
-            }
-
-            return _routesList;
         }
     }
 }
