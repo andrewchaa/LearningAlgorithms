@@ -73,6 +73,11 @@ namespace LearningAlgorithms.Graph
             }
         }
 
+        public List<List<MyNode>> FindRoutesExactStops(MyNode start, MyNode end, int exactStops)
+        {
+            return new List<List<MyNode>>();
+        }
+
         private void PrintNodes(IEnumerable<List<MyNode>> list)
         {
             foreach (var lst in list)

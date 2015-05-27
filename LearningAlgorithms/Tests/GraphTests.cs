@@ -74,6 +74,22 @@ namespace LearningAlgorithms.Tests
             Assert.That(list.Count, Is.EqualTo(2));
         }
 
+        [Test]
+        public void It_should_find_routes_with_the_exact_number_of_stops()
+        {
+            // arrange
+            var graph = BuildGraph();
+            var nodeA = graph.Nodes.First(n => n.Name == "A");
+            var nodeC = graph.Nodes.First(n => n.Name == "C");
+
+            // act
+            var list = graph.FindRoutesExactStops(nodeA, nodeC, 4);
+
+            // assert
+            Assert.That(list.Count, Is.EqualTo(3));
+            
+        }
+
         private MyGraph BuildGraph()
         {
             var graph = new MyGraph();
