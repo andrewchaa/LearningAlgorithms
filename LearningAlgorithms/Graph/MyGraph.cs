@@ -8,6 +8,7 @@ namespace LearningAlgorithms.Graph
         public IList<MyNode> Nodes { get; private set; }
         private MyNode _endNode;
         private int _maxStops;
+        private int _exactStops;
 
         public MyGraph()
         {
@@ -75,7 +76,37 @@ namespace LearningAlgorithms.Graph
 
         public List<List<MyNode>> FindRoutesExactStops(MyNode start, MyNode end, int exactStops)
         {
-            return new List<List<MyNode>>();
+            var matchingNodes = new List<List<MyNode>>();
+            _exactStops = exactStops;
+            _endNode = end;
+
+            var routes = new List<MyNode> {start};
+            FindNodesByExactStops(matchingNodes, routes, start, 0);
+            PrintNodes(matchingNodes);
+
+            return matchingNodes;
+        }
+
+        private void FindNodesByExactStops(List<List<MyNode>> matchingNodes, List<MyNode> routes, MyNode node, int exactStops)
+        {
+            exactStops++;
+
+            foreach (var nd in node.Nodes)
+            {
+                routes.Add(nd);
+
+                if (nd.Nodes.Count == 0 || exactStops >= _exactStops)
+                {
+                    if (routes.Contains(_endNode))
+                    {
+                        matchingNodes.Add(routes);
+                    }
+                    continue;
+                }
+                    
+
+                FindNodesByExactStops(matchingNodes, routes, nd, exactStops);
+            }
         }
 
         private void PrintNodes(IEnumerable<List<MyNode>> list)
