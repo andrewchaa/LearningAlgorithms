@@ -90,6 +90,22 @@ namespace LearningAlgorithms.Tests
             
         }
 
+        [Test]
+        public void It_should_find_the_shortest_routes_from_A_to_C()
+        {
+            // arrange
+            var graph = BuildGraph();
+            var nodeA = graph.Nodes.First(n => n.Name == "A");
+            var nodeC = graph.Nodes.First(n => n.Name == "C");
+
+            // act
+            var distance = graph.FindShortestDistance(nodeA, nodeC);
+
+            // assert
+            Assert.That(distance, Is.EqualTo(9));
+            
+        }
+
         private MyGraph BuildGraph()
         {
             var graph = new MyGraph();

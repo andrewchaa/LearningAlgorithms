@@ -10,6 +10,7 @@ namespace LearningAlgorithms.Graph
         private MyNode _endNode;
         private int _maxStops;
         private int _exactStops;
+        private int _shortestDistance;
 
         public MyGraph()
         {
@@ -109,6 +110,48 @@ namespace LearningAlgorithms.Graph
                     
 
                 FindNodesByExactStops(matchingNodes, routes, nd, stops);
+            }
+        }
+
+        public int FindShortestDistance(MyNode start, MyNode end)
+        {
+            _endNode = end;
+            _shortestDistance = int.MaxValue;
+            var shortestRoute = new List<MyNode>();
+            var route = new List<MyNode>();
+            var distances = new List<int>();
+            route.Add(start);
+
+            FindShortestDistance(distances, route, start);
+
+            return _shortestDistance;
+        }
+
+        private void FindShortestDistance(List<int> distances, List<MyNode> route, MyNode node)
+        {
+            var newRoute = new List<MyNode>();
+            newRoute.AddRange(route);
+
+            var newDistances = new List<int>();
+            newDistances.AddRange(distances);
+
+            for (int i = 0; i < node.Nodes.Count; i++)
+            {
+                var nd = node.Nodes[i];
+                var distance = node.Weights[i];
+                newRoute.Add(nd);
+                newDistances.Add(distance);
+
+                if (newDistances.Sum() >= _shortestDistance)
+                    continue;
+
+                if (nd == _endNode && newDistances.Sum() < _shortestDistance)
+                {
+                    _shortestDistance = newDistances.Sum();
+                    continue;
+                }
+
+                FindShortestDistance(newDistances, newRoute, nd);
             }
         }
 
