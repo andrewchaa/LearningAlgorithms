@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LearningAlgorithms.Graph
 {
@@ -87,17 +88,19 @@ namespace LearningAlgorithms.Graph
             return matchingNodes;
         }
 
-        private void FindNodesByExactStops(List<List<MyNode>> matchingNodes, List<MyNode> routes, MyNode node, int exactStops)
+        private void FindNodesByExactStops(List<List<MyNode>> matchingNodes, List<MyNode> existingRoutes, MyNode node, int stops)
         {
-            exactStops++;
+            stops++;
 
             foreach (var nd in node.Nodes)
             {
+                var routes = new List<MyNode>();
+                routes.AddRange(existingRoutes);
                 routes.Add(nd);
 
-                if (nd.Nodes.Count == 0 || exactStops >= _exactStops)
+                if (nd.Nodes.Count == 0 || stops >= _exactStops)
                 {
-                    if (routes.Contains(_endNode))
+                    if (routes.Last() == _endNode)
                     {
                         matchingNodes.Add(routes);
                     }
@@ -105,7 +108,7 @@ namespace LearningAlgorithms.Graph
                 }
                     
 
-                FindNodesByExactStops(matchingNodes, routes, nd, exactStops);
+                FindNodesByExactStops(matchingNodes, routes, nd, stops);
             }
         }
 
