@@ -106,6 +106,18 @@ namespace LearningAlgorithms.Tests
             
         }
 
+        [Test]
+        public void It_should_find_the_different_routes_with_a_distance_of_less_than_30()
+        {
+            // arrange
+            var graph = BuildGraph();
+            var nodeC = graph.Nodes.First(n => n.Name == "C");
+
+            var routes = graph.FindRoutesUnderDistanceOf(nodeC, nodeC, 30);
+
+            Assert.That(routes.Count, Is.EqualTo(7));
+        }
+
         private MyGraph BuildGraph()
         {
             var graph = new MyGraph();

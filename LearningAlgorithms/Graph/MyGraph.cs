@@ -11,6 +11,9 @@ namespace LearningAlgorithms.Graph
         private int _maxStops;
         private int _exactStops;
         private int _shortestDistance;
+        private int _underDistance;
+        private List<List<MyNode>> _foundRoutes;
+        private int _totalDistance;
 
         public MyGraph()
         {
@@ -117,7 +120,6 @@ namespace LearningAlgorithms.Graph
         {
             _endNode = end;
             _shortestDistance = int.MaxValue;
-            var shortestRoute = new List<MyNode>();
             var route = new List<MyNode>();
             var distances = new List<int>();
             route.Add(start);
@@ -153,6 +155,44 @@ namespace LearningAlgorithms.Graph
 
                 FindShortestDistance(newDistances, newRoute, nd);
             }
+        }
+
+        public List<List<MyNode>> FindRoutesUnderDistanceOf(MyNode start, MyNode end, int distance)
+        {
+            _endNode = end;
+            _underDistance = distance;
+            _foundRoutes = new List<List<MyNode>>();
+
+            var route = new List<MyNode>();
+            route.Add(start);
+
+            FindRoutesUnderDistance(route, start, 0);
+            PrintNodes(_foundRoutes);
+
+            return _foundRoutes;
+        }
+
+        private void FindRoutesUnderDistance(List<MyNode> route, MyNode node, int distance)
+        {
+            for (int i=0; i<node.Nodes.Count; i++)
+            {
+                var nd = node.Nodes[i];
+                var newDistance = distance + node.Weights[i];
+                var newRoute = new List<MyNode>();
+                newRoute.AddRange(route);
+                newRoute.Add(nd);
+
+                if (newDistance >= _underDistance)
+                    continue;
+
+                if (nd == _endNode)
+                {
+                    _foundRoutes.Add(newRoute);
+                }
+
+                FindRoutesUnderDistance(newRoute, nd, newDistance);
+            }
+            
         }
 
         private void PrintNodes(IEnumerable<List<MyNode>> list)
